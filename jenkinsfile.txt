@@ -21,10 +21,15 @@ pipeline {
                 sh 'mv src/main/java/com/example/myjavaapp/HelloWorld.class build'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'docker build -t my-java-app .'
+            }
+        }
 
         stage('Deploy') {
             steps {
-                // Add your deployment commands here
+                sh 'docker run -d -p 7000:7000 my-java-app'
             }
         }
     }
