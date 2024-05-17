@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Compile') {
+            steps {
+                sh 'javac src/main/java/com/example/myjavaapp/HelloWorld.java'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "Running tests"'
+                // Add your test commands here
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mkdir -p build'
+                sh 'mv src/main/java/com/example/myjavaapp/HelloWorld.class build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Add your deployment commands here
+            }
+        }
+    }
+}
